@@ -1,4 +1,5 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Library_Managment_System_ASP.NET_API.objects
 {
@@ -16,10 +17,11 @@ namespace Library_Managment_System_ASP.NET_API.objects
         public string Title { get; set; }
         public string Author { get; set; }
         public int Published { get; set; }
+        public Book()
+        {
+
+        }
     }
 
-    public Book()
-    {
-
-    }
+    
 }

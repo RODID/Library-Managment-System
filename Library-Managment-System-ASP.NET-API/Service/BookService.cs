@@ -41,9 +41,9 @@ namespace Library_Managment_System_ASP.NET_API.Service
             BooksDb.Remove(book);
         }
 
-
-
-
-
+        internal List<Book> GetAllBooks()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
