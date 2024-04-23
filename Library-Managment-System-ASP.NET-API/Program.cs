@@ -1,3 +1,7 @@
+using Library_Managment_System_ASP.NET_API.Service;
+using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
+
 namespace Library_Managment_System_ASP.NET_API
 {
     public class Program
@@ -8,8 +12,12 @@ namespace Library_Managment_System_ASP.NET_API
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddControllers();
-            builder.Services.AddSingleton<BookService>();
+            builder.Services.AddControllers().AddJsonOptions(option => option.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            builder.Services.AddTransient<BookService>();
+
+            string connectionString =
+                builder.Configuration.GetConnectionString("");
+
 
             var app = builder.Build();
 

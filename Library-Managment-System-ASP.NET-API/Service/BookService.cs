@@ -1,49 +1,46 @@
-﻿using Library_Managment_System_ASP.NET_API.objects;
+﻿using Library_Managment_System_ASP.NET_API.Controllers;
+using Library_Managment_System_ASP.NET_API.objects;
 
 namespace Library_Managment_System_ASP.NET_API.Service
 {
     public class BookService
     {
-        List<Book> BooksDb = new List<Book>();
+        BookController bookController;
 
-        public BookService()
-        {
-            BooksDb.Add(new Book(1, "The Prince", "Niccolo Machiavelli", 1445));
-            BooksDb.Add(new Book(2, "Art of War", "Sun-Tzu", 1356));
-            BooksDb.Add(new Book(3, "Harry Potter", "JK Rowling", 2010));
-        }
-
-        public List<Book> GetBooks() { return BooksDb; }
+        public List<Book> GetBooks() { return bookController.BooksDb; }
         public Book GetBookById(int id)
         {
-            return BooksDb.First(book => book.BookId == id);
+            return bookController.BooksDb.First(book => book.BookId == id);
         }
 
         public bool AddBook(Book book)
         {
             if(book == null) return false;
-            BooksDb.Add(book);
+            bookController.BooksDb.Add(book);
             return true;
         }
 
-        public void UpdateBook(Book updateBook)
+        public bool UpdateBook(Book book)
         {
-            Book book = GetBookById(updateBook.BookId);
-            if(book == null) return;
-            book.Title = updateBook.Title;
-            book.Published = updateBook.Published;
+            if(book == null) return false;
+            bookController.UpdateBook(book);
+            return true;
         }
 
-        public void DeleteBook(int id)
+        public bool DeleteBook(int id)
         {
-            Book book = GetBookById(id);
-            if(book == null) return;
-            BooksDb.Remove(book);
+            if(id == 0) return false;
+            bookController.DeleteBook(id);
+            return true;
         }
+
+        
 
         internal List<Book> GetAllBooks()
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }
