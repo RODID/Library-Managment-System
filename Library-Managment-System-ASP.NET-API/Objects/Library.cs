@@ -7,7 +7,6 @@ namespace Library_Managment_System_ASP.NET_API.Objects
     {
         DbContext dbContext;
         public string Location  { get; set; }
-        public List<Book> Books { get; set; }
         public Library() { }
 
     }

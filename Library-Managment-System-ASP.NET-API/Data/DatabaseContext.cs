@@ -1,18 +1,17 @@
 ﻿using Library_Managment_System_ASP.NET_API.objects;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace Library_Managment_System_ASP.NET_API.Data 
 {
     public class DatabaseContext: DbContext
     {
-        
+        //generall synthax for establishing connection between database and program.
         public DatabaseContext(DbContextOptions options): base (options)
         {
 
         }
 
-        public DbSet<Book> Books { get; set; }
+        //Creata a Table name Books with 5 columns
+        public DbSet<Book> books { get; set; }
     }
 }

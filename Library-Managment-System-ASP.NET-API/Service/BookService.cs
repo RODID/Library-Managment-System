@@ -1,4 +1,5 @@
 ﻿using Library_Managment_System_ASP.NET_API.Controllers;
+using Library_Managment_System_ASP.NET_API.Data;
 using Library_Managment_System_ASP.NET_API.objects;
 using System.Data.Entity;
 
@@ -6,10 +7,14 @@ namespace Library_Managment_System_ASP.NET_API.Service
 {
     public class BookService
     {
-        BookController bookController;
-        DbContext dbContext;
+        DatabaseContext dbContext;
 
-        public List<Book> GetBooks() { return bookController.BooksDb; }
+        public BookService(DatabaseContext dbContex)
+        {
+            this.dbContext = dbContext;
+        }
+
+        public List<Book> GetBooks() { return dbContext.books; }
         public Book GetBookById(int id)
         {
             return bookController.BooksDb.First(book => book.BookId == id);

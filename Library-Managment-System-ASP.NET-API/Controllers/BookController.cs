@@ -11,7 +11,7 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
     public class BookController : ControllerBase
     {
         BookService bookService;
-        public List<Book> BooksDb = new List<Book>();
+        
 
         public BookController(BookService bookService)
         {
@@ -65,6 +65,10 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
 
         }
 
+        public List<Book> GetBookList()
+        {
+            return bookService.GetBookList();
+        }
         
 
 
