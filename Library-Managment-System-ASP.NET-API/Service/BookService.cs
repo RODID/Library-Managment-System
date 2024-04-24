@@ -1,11 +1,13 @@
 ﻿using Library_Managment_System_ASP.NET_API.Controllers;
 using Library_Managment_System_ASP.NET_API.objects;
+using System.Data.Entity;
 
 namespace Library_Managment_System_ASP.NET_API.Service
 {
     public class BookService
     {
         BookController bookController;
+        DbContext dbContext;
 
         public List<Book> GetBooks() { return bookController.BooksDb; }
         public Book GetBookById(int id)

@@ -18,7 +18,6 @@ namespace Library_Managment_System_ASP.NET_API.objects
         public int Published { get; set; }
         public string Genre { get; set; }
 
-        public List<Book> Books { get; set; }
         public Book()
         {
 

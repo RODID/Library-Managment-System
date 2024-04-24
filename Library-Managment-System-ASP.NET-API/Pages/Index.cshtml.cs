@@ -1,3 +1,4 @@
+using Library_Managment_System_ASP.NET_API.Data;
 using Library_Managment_System_ASP.NET_API.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,7 +9,7 @@ namespace Library_Managment_System_ASP.NET_API.Pages
     public class IndexModel : PageModel
     {
         BookService bookService;
-        public List<BooksDb> books;
+        public List<DatabaseContext> Books;
 
         public IndexModel(BookService bookService)
         {
