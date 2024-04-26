@@ -18,19 +18,19 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
             this.bookService = bookService;
         }
 
-        [HttpGet("all")]
+        [HttpGet("getAll")]
         public List<Book> GetAll() 
         {
             return bookService.GetBooks();
         }
 
-        [HttpGet("first")]
+        [HttpGet("getBook")]
         public Book GetABook()
         {
             return bookService.GetBooks()[0];
         }
 
-        [HttpPost]
+        [HttpPost("addBook")]
         public ActionResult AddBook(Book book)
         {
             bool success = bookService.AddBook(book);
@@ -41,7 +41,7 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
             return BadRequest();
         }
 
-        [HttpPut]
+        [HttpPut ("updateBook")]
 
         public ActionResult UpdateBook(Book book)
         {
@@ -64,13 +64,6 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
             return BadRequest();
 
         }
-
-        public List<Book> GetBookList()
-        {
-            return bookService.GetBookList();
-        }
-        
-
 
     }
 }
