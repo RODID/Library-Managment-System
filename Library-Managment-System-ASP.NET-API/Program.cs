@@ -16,7 +16,7 @@ namespace Library_Managment_System_ASP.NET_API
             builder.Services.AddTransient<BookService>();
 
             string connectionString =
-                builder.Configuration.GetConnectionString("");
+                builder.Configuration.GetConnectionString("DefaultConnection");
 
 
             var app = builder.Build();
