@@ -18,18 +18,21 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
             this.bookService = bookService;
         }
 
+        //Fetching all the existing books from the list
         [HttpGet("getAll")]
         public List<Book> GetAll() 
         {
             return bookService.GetBooks();
         }
 
+        //Fetching a book (singular)
         [HttpGet("getBook")]
         public Book GetABook()
         {
             return bookService.GetBooks()[0];
         }
 
+        //Adding a book
         [HttpPost("addBook")]
         public ActionResult AddBook(Book book)
         {
@@ -41,6 +44,8 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
             return BadRequest();
         }
 
+
+        //Updates books
         [HttpPut ("updateBook")]
 
         public ActionResult UpdateBook(Book book)
