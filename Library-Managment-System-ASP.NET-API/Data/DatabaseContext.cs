@@ -9,17 +9,8 @@ namespace Library_Managment_System_ASP.NET_API.Data
     public class DatabaseContext: DbContext
     {
         //generall synthax for establishing connection between database and program.
-        public DatabaseContext(DbContextOptions options): base (options)
+        public DatabaseContext(DbContextOptions options) : base (options)
         {
-
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySql();
-            }
         }
 
         //Creata a Table name Books with 5 columns
