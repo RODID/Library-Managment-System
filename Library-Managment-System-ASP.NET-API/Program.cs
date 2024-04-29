@@ -1,4 +1,6 @@
+using Library_Managment_System_ASP.NET_API.Data;
 using Library_Managment_System_ASP.NET_API.Service;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
@@ -14,10 +16,9 @@ namespace Library_Managment_System_ASP.NET_API
             builder.Services.AddRazorPages();
             builder.Services.AddControllers().AddJsonOptions(option => option.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             builder.Services.AddTransient<BookService>();
-
-            string connectionString =
-                builder.Configuration.GetConnectionString("DefaultConnection");
-
+            builder.Services.AddDbContext<DatabaseContext>(options => options.UseMySQL(
+                builder.Configuration.GetConnectionString("DefaultConnection")
+                ));
 
             var app = builder.Build();
 
