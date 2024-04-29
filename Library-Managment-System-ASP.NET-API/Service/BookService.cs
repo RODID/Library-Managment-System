@@ -1,7 +1,6 @@
 ﻿using Library_Managment_System_ASP.NET_API.Controllers;
 using Library_Managment_System_ASP.NET_API.Data;
 using Library_Managment_System_ASP.NET_API.objects;
-using System.Data.Entity;
 
 namespace Library_Managment_System_ASP.NET_API.Service
 {
