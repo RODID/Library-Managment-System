@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
 
-namespace Library_Managment_System_ASP.NET_API.objects
+namespace Library_Managment_System_ASP.NET_API.Objects
 {
     public class Book
     {

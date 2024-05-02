@@ -1,48 +1,62 @@
-﻿using Library_Managment_System_ASP.NET_API.Controllers;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Library_Managment_System_ASP.NET_API.Data;
-using Library_Managment_System_ASP.NET_API.objects;
+using Library_Managment_System_ASP.NET_API.Objects;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library_Managment_System_ASP.NET_API.Service
 {
     public class BookService
     {
-        private readonly DatabaseContext dbContext;
+        private readonly DatabaseContext _dbContext;
 
         public BookService(DatabaseContext dbContext)
         {
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
-        public List<Book> GetBooks() { return dbContext.Books.ToList(); }
+        public void ResetAutoIncrement()
+        {
+            _dbContext.Database.ExecuteSqlRaw("ALTER TABLE Books AUTO_INCREMENT = 1;");
+        }
+
+        public List<Book> GetBooks()
+        {
+            return _dbContext.Books.ToList();
+        }
+
         public Book GetBookById(int id)
         {
-            return dbContext.Books.FirstOrDefault(book => book.BookId == id);
+            return _dbContext.Books.FirstOrDefault(book => book.BookId == id);
         }
 
         public bool AddBook(Book book)
         {
-            if(book == null) return false;
-            dbContext.Books.Add(book);
-            dbContext.SaveChanges();
+            if (book == null) return false;
+            _dbContext.Books.Add(book);
+            _dbContext.SaveChanges();
             return true;
         }
 
-        public bool UpdateBook(Book book)
+        public bool UpdateBook(Book updatedBook)
         {
-            if(book == null) return false;
-            dbContext.Books.Update(book);
-            dbContext.SaveChanges();
+            var book = _dbContext.Books.FirstOrDefault(b => b.BookId == updatedBook.BookId);
+            if (book == null) return false;
+            book.Title = updatedBook.Title;
+            _dbContext.SaveChanges();
             return true;
         }
 
         public bool DeleteBook(int id)
         {
-            var book = dbContext.Books.FirstOrDefault(book => book.BookId == id);
-            if(book == null) return false;
-            dbContext.Books.Remove(book);
-            dbContext.SaveChanges();
+            var book = _dbContext.Books.FirstOrDefault(b => b.BookId == id);
+            if (book == null) return false;
+            _dbContext.Books.Remove(book);
+            _dbContext.SaveChanges();
+
+            ResetAutoIncrement();
+
             return true;
         }
-
     }
 }

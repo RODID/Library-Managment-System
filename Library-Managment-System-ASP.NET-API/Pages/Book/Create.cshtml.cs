@@ -19,7 +19,7 @@ namespace Library_Managment_System_ASP.NET_API.Pages.Book
         {
         }
 
-        public void OnAddBook(objects.Book book)
+        public void OnAddBook(Objects.Book book)
         {
             if(ModelState.IsValid)
             {

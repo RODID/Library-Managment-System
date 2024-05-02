@@ -42,7 +42,7 @@ namespace Library_Managment_System_ASP.NET_API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Library_Managment_System_ASP.NET_API.objects.Book", b =>
+            modelBuilder.Entity("Library_Managment_System_ASP.NET_API.objects.Book1", b =>
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()

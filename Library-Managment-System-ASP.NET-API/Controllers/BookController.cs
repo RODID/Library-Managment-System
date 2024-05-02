@@ -1,4 +1,4 @@
-﻿using Library_Managment_System_ASP.NET_API.objects;
+﻿using Library_Managment_System_ASP.NET_API.Objects;
 using Library_Managment_System_ASP.NET_API.Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
