@@ -39,7 +39,6 @@ namespace Library_Managment_System_ASP.NET_API.Service
             return true;
         }
 
-        public IActionResult
         public bool UpdateBook(Book updatedBook)
         {
             var book = _dbContext.Books.FirstOrDefault(b => b.BookId == updatedBook.BookId);
