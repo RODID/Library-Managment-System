@@ -2,6 +2,7 @@
 using System.Linq;
 using Library_Managment_System_ASP.NET_API.Data;
 using Library_Managment_System_ASP.NET_API.Objects;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library_Managment_System_ASP.NET_API.Service
@@ -38,6 +39,7 @@ namespace Library_Managment_System_ASP.NET_API.Service
             return true;
         }
 
+        public IActionResult
         public bool UpdateBook(Book updatedBook)
         {
             var book = _dbContext.Books.FirstOrDefault(b => b.BookId == updatedBook.BookId);

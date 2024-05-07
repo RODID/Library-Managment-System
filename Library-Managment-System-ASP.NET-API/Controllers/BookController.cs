@@ -1,7 +1,9 @@
-﻿using Library_Managment_System_ASP.NET_API.Objects;
+﻿using Library_Managment_System_ASP.NET_API.Data;
+using Library_Managment_System_ASP.NET_API.Objects;
 using Library_Managment_System_ASP.NET_API.Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace Library_Managment_System_ASP.NET_API.Controllers
@@ -11,11 +13,11 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
     public class BookController : ControllerBase
     {
         BookService bookService;
-        
+        private readonly DatabaseContext _dbContext;
 
-        public BookController(BookService bookService)
+        public BookController(DatabaseContext dBContext)
         {
-            this.bookService = bookService;
+            _dbContext = dBContext;
         }
 
         //Fetching all the existing books from the list
