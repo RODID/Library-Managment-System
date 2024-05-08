@@ -12,16 +12,11 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        DatabaseContext db;
-        
-        public BookController(DatabaseContext databaseContext)
-        private readonly BookService bookService;
+        BookService bookService;
         private readonly DatabaseContext _dbContext;
 
-        public BookController(BookService bookService, DatabaseContext dBContext)
+        public BookController(DatabaseContext dBContext)
         {
-            db = databaseContext;
-            this.bookService = bookService;
             _dbContext = dBContext;
         }
 
@@ -63,13 +58,11 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
 
 
         //Updates books
-        [HttpPut ("updateBook/{id}")]
+        [HttpPut ("updateBook")]
 
-        public ActionResult UpdateBook(int id, Book updateBook)
+        public ActionResult UpdateBook(Book book)
         {
-           Book bookToEdit = db.Books.Find(book.BookId);
-            if (bookToEdit != null)
-            bool success = bookService.UpdateBook(id, updateBook);
+            bool success = bookService.UpdateBook(book);
             if (success)
             {
                 bookToEdit.Title = book.Title;
@@ -95,7 +88,7 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
                 db.Books.Remove(book);
                 db.SaveChanges();
                 return Ok();
-            } 
+            }
             return BadRequest();
         }
 
