@@ -39,6 +39,8 @@ namespace Library_Managment_System_ASP.NET_API
 
             app.MapRazorPages();
 
+            app.MapControllers();
+
             app.Run();
         }
     }
