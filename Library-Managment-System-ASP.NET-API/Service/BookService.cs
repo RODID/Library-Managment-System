@@ -39,7 +39,6 @@ namespace Library_Managment_System_ASP.NET_API.Service
             return true;
         }
 
-        
         public bool UpdateBook(Book updatedBook)
         {
             var book = _dbContext.Books.FirstOrDefault(b => b.BookId == updatedBook.BookId);
@@ -48,8 +47,6 @@ namespace Library_Managment_System_ASP.NET_API.Service
             _dbContext.SaveChanges();
             return true;
         }
-
-
 
         public bool DeleteBook(int id)
         {
