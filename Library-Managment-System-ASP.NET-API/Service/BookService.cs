@@ -34,16 +34,33 @@ namespace Library_Managment_System_ASP.NET_API.Service
         public bool AddBook(Book book)
         {
             if (book == null) return false;
-            _dbContext.Books.Add(book);
-            _dbContext.SaveChanges();
-            return true;
+            try
+            {
+                _dbContext.Books.Add(book);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log or handle the exception
+                var innerException = ex.InnerException;
+                // Log or handle the inner exception details
+
+                // Return false or rethrow the exception
+                return false;
+            }
         }
 
-        public bool UpdateBook(Book updatedBook)
+        public bool UpdateBook(int id, Book updatedBook)
         {
-            var book = _dbContext.Books.FirstOrDefault(b => b.BookId == updatedBook.BookId);
+            var book = _dbContext.Books.FirstOrDefault(b => b.BookId == id);
             if (book == null) return false;
+
             book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.Published = updatedBook.Published;
+            book.Genre = updatedBook.Genre;
+
             _dbContext.SaveChanges();
             return true;
         }

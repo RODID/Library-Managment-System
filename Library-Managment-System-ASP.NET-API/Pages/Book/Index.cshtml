@@ -18,7 +18,6 @@
             </tr>
         </thead>
 
-
         <tbody>
             @foreach (var book in Model.bookList)
             {
@@ -30,6 +29,7 @@
                     <td>@book.Genre</td>
                     <td>
                         <form method="post">
+                            <input type="hidden" name="BookId" value="@book.BookId" />
                             <button type="submit" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@book.BookId">Delete</button>
                         </form>
                     </td>
@@ -56,7 +56,18 @@
             <label for="genre">Genre:</label>
             <input type="text" class="form-control" id="genre" name="Genre" required>
         </div>
-        <button type="submit" class="btn btn-primary">Add Book</button>
-        <button type="button" class="btn btn-secondary">Edit Book</button>
+        <div>
+            <button type="submit" class="btn btn-primary">Add Book</button>
+            <button type="submit" class="btn btn-secondary" asp-page-handler="EditBook">Edit Book</button>
+        </div>
+        <div>
+            <h2>Search Book By ID</h2>
+            <div class="form-group">
+                <label for="searchId">Book ID:</label>
+                <input type="number" class="form-control" id="searchId" name="SearchId" value="">
+            </div>
+            <button type="submit" class="btn btn-primary" asp-page-handler="SearchBook">Search</button>
+        </div>
     </form>
+    
 </div>
