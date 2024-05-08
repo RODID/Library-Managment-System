@@ -44,6 +44,9 @@ namespace Library_Managment_System_ASP.NET_API.Service
             var book = _dbContext.Books.FirstOrDefault(b => b.BookId == updatedBook.BookId);
             if (book == null) return false;
             book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.Published = updatedBook.Published;
+            book.Genre = updatedBook.Genre;
             _dbContext.SaveChanges();
             return true;
         }

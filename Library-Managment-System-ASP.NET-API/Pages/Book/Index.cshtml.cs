@@ -31,7 +31,7 @@ namespace Library_Managment_System_ASP.NET_API.Pages.Book
 
         public IActionResult OnPost(Objects.Book book)
         {
-
+            book.BookId = 0;
             bookService.AddBook(book);
             return RedirectToPage();
 
@@ -45,7 +45,7 @@ namespace Library_Managment_System_ASP.NET_API.Pages.Book
 
         public IActionResult OnPostSearchBook(int searchId)
         {
-            SelectedBook = bookList.FirstOrDefault(b => b.BookId == searchId);
+            SelectedBook = bookService.GetBookById(searchId);
             if (SelectedBook != null)
             {
                 DisplayBookDetails = true;
@@ -56,6 +56,12 @@ namespace Library_Managment_System_ASP.NET_API.Pages.Book
                 DisplayBookDetails = false;
             }
             return Page();
+        }
+
+        public IActionResult OnPostEditBook (Objects.Book book)
+        {
+            bookService.UpdateBook(book);
+            return RedirectToPage();
         }
 
     }
