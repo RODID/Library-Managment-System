@@ -12,7 +12,11 @@ namespace Library_Managment_System_ASP.NET_API.Pages.Book
 
         private readonly BookService bookService;
 
-        public IndexModel(BookService bookService)
+        public List<Objects.Book> bookList { get; set; }
+
+        public string PageName { get; } = "Book Page";
+
+        public IndexModel(DatabaseContext databaseContext)
         {
             this.bookService = bookService;
 
@@ -26,10 +30,10 @@ namespace Library_Managment_System_ASP.NET_API.Pages.Book
 
         public void OnGet()
         {
-            bookList = bookService.GetBooks();
+            bookList = databaseContext.Books.ToList();
         }
 
-        public IActionResult OnPost(Objects.Book book)
+        public void OnPost(Objects.Book book)
         {
             
              bookService.AddBook(book);
