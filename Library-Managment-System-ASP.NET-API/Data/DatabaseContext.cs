@@ -14,7 +14,6 @@ namespace Library_Managment_System_ASP.NET_API.Data
 
         //Creata a Table name Books with 5 columns
         public DbSet<Book> Books { get; set; }
-        public DbSet<User> Users { get; set; }
-        public IEnumerable<Book> Book { get; internal set; }
+     
     }
 }

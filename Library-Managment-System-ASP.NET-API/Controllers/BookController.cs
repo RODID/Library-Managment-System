@@ -12,38 +12,47 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        BookService bookService;
-        private readonly DatabaseContext _dbContext;
-
-        public BookController(DatabaseContext dBContext)
+        DatabaseContext db;
+        
+        public BookController(DatabaseContext databaseContext)
         {
-            _dbContext = dBContext;
+            db = databaseContext;
         }
+
+      
 
         //Fetching all the existing books from the list
         [HttpGet("getAll")]
-        public List<Book> GetAll() 
+        public ActionResult <List<Book>> Get() 
         {
-            return bookService.GetBooks();
+            return Ok(db.Books.ToList());
         }
 
-        //Fetching a book (singular)
-        [HttpGet("getBook")]
-        public Book GetABook()
-        {
-            return bookService.GetBooks()[0];
-        }
+
 
         //Adding a book
         [HttpPost("addBook")]
         public ActionResult AddBook(Book book)
         {
-            bool success = bookService.AddBook(book);
-            if (success)
+            if (book != null && !string.IsNullOrEmpty(book.Title) && !string.IsNullOrEmpty(book.Author)
+              && book.Published > -1 && !string.IsNullOrEmpty(book.Genre))
             {
+                db.Books.Add(book);
+                db.SaveChanges();
                 return Ok();
             }
             return BadRequest();
+        }
+
+        [HttpGet]
+        public ActionResult<Book> GetBookById(int id)
+        {
+            Book book = db.Books.Find(id);
+            if (book != null)
+            {
+                return Ok(book);
+            }
+            return NoContent();
         }
 
 
@@ -52,24 +61,34 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
 
         public ActionResult UpdateBook(Book book)
         {
-            bool success = bookService.UpdateBook(book);
-            if (success)
+           Book bookToEdit = db.Books.Find(book.BookId);
+            if (bookToEdit != null)
             {
+                bookToEdit.Title = book.Title;
+                bookToEdit.Author = book.Author;
+                bookToEdit.Published = book.Published;
+                bookToEdit.Genre = book.Genre;
+
+                db.SaveChanges();
                 return Ok();
+
             }
-            return BadRequest();
+            return NoContent();
+
         }
 
 
+        [HttpDelete("deleteBook")]
         public ActionResult DeleteBook(int id)
         {
-            bool success = bookService.DeleteBook(id);
-            if(success)
+           Book book = db.Books.Find(id);
+            if (book != null)
             {
+                db.Books.Remove(book);
+                db.SaveChanges();
                 return Ok();
             }
             return BadRequest();
-
         }
 
     }
