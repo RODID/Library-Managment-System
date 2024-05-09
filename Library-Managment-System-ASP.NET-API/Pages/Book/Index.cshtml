@@ -1,11 +1,20 @@
 ﻿@page
 @model Library_Managment_System_ASP.NET_API.Pages.Book.IndexModel
 @{
-    ViewData["Title"] = "Books";
+    ViewData["Title"] = "Library";
 }
 
+
+<link rel="stylesheet" href="~/css/StyleHomePage.css"/>
+<link rel="stylesheet" href="~/css/Animations.css"/>
 <div class="container mt-5">
-    <h1>@Model.PageName</h1>
+    <div class="jumbotron">
+        <h1>Welcome to Your Book Library!</h1>
+        <p>Manage your books easily. Add, delete, or modify book details below.</p>
+    </div>
+
+    <!-- List of Books -->
+    <h2>Book List</h2>
     <table class="table">
         <thead>
             <tr>
@@ -17,7 +26,6 @@
                 <th>Actions</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var book in Model.bookList)
             {
@@ -38,8 +46,9 @@
         </tbody>
     </table>
 
+    <!-- Add Book -->
+    <h2>Add New Book</h2>
     <form method="post">
-        <h2>Add New Book</h2>
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="Title" required>
@@ -57,25 +66,15 @@
             <input type="text" class="form-control" id="genre" name="Genre" required>
         </div>
         <div class="form-group">
+            <h2>Search Book By ID</h2>
             <label for="BookId">Book to Update:</label>
-            <input type="number" name="BookId" class="form-control" id="BookId"/>
+            <input type="number" name="BookId" class="form-control" id="BookId" />
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Add Book</button>
             <button type="submit" class="btn btn-secondary" asp-page-handler="EditBook">Edit Book</button>
         </div>
-        
+
     </form>
-    <form method="post">
-        <div>
-            <h2>Search Book By ID</h2>
-            <div class="form-group">
-                <label for="searchId">Book ID:</label>
-                <input type="number" class="form-control" id="searchId" name="SearchId" value="">
-            </div>
-            <button type="submit" class="btn btn-primary" asp-page-handler="SearchBook">Search</button>
-        </div>
-    </form>
-    
 
 </div>

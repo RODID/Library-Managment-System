@@ -1,0 +1,38 @@
+﻿body {
+    background-color: #f0f0f0; 
+    color: #333; 
+}
+
+.neon-text {
+    color: #ff00ff; 
+}
+
+.add-book-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .add-book-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .add-book-form label {
+        font-weight: bold;
+    }
+
+    .add-book-form input[type="text"],
+    .add-book-form input[type="number"] {
+        width: calc(100% - 20px); /* Adjusted width */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .add-book-form input[type="text"]:focus,
+        .add-book-form input[type="number"]:focus {
+            outline: none;
+            border-color: #6cb2eb;
+        }
