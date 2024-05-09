@@ -49,7 +49,7 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
 
 
         //Updates books
-        [HttpPut ("updateBook/{id}")]
+        [HttpPut ("updateBook")]
 
         public ActionResult UpdateBook(int id, Book updateBook)
         {
@@ -61,7 +61,7 @@ namespace Library_Managment_System_ASP.NET_API.Controllers
             return BadRequest();
         }
 
-
+        [HttpDelete("deleteBook")]
         public ActionResult DeleteBook(int id)
         {
             bool success = bookService.DeleteBook(id);
