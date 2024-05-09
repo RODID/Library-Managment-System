@@ -56,10 +56,17 @@
             <label for="genre">Genre:</label>
             <input type="text" class="form-control" id="genre" name="Genre" required>
         </div>
+        <div class="form-group">
+            <label for="BookId">Book to Update:</label>
+            <input type="number" name="BookId" class="form-control" id="BookId"/>
+        </div>
         <div>
             <button type="submit" class="btn btn-primary">Add Book</button>
             <button type="submit" class="btn btn-secondary" asp-page-handler="EditBook">Edit Book</button>
         </div>
+        
+    </form>
+    <form method="post">
         <div>
             <h2>Search Book By ID</h2>
             <div class="form-group">
@@ -69,5 +76,6 @@
             <button type="submit" class="btn btn-primary" asp-page-handler="SearchBook">Search</button>
         </div>
     </form>
+    
 
 </div>
